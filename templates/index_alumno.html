@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Tarjeta principal -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden dark:bg-gray-800">
+        <!-- Encabezado -->
+        <div class="px-6 py-4 bg-blue-600 dark:bg-blue-700">
+            <h3 class="text-2xl font-bold text-white">Bienvenido, {{ session.nombre }}</h3>
+        </div>
+        
+        <div class="p-6">
+            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Panel del Alumno</h4>
+            
+            <!-- Botón de acción -->
+            <div class="flex justify-center">
+                <a href="{{ url_for('alumnos.examen') }}" class="px-8 py-3 text-lg font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition duration-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                    Realizar Examen
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

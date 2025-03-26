@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold">Alumno: {{ alumno.nombre }} {{ alumno.apellido_paterno }}</h3>
+        <p class="text-gray-600">Edad: {{ edad }} años</p>
+    </div>
+
+    <form method="POST" action="{{ url_for('alumnos.guardar_examen') }}">
+        {{ form.csrf_token }}
+        <input type="hidden" name="alumno_id" value="{{ alumno.id }}">
+        
+        {% for pregunta in preguntas %}
+        <div class="mb-8 p-4 border rounded-lg">
+            <p class="font-bold mb-3">{{ loop.index }}. {{ pregunta.texto }}</p>
+            
+            <div class="space-y-2">
+                <div class="flex items-center">
+                    <input type="radio" id="p{{ pregunta.id }}_a" name="pregunta_{{ pregunta.id }}" value="A" class="mr-2" required>
+                    <label for="p{{ pregunta.id }}_a">A) {{ pregunta.respuesta_a }}</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="radio" id="p{{ pregunta.id }}_b" name="pregunta_{{ pregunta.id }}" value="B" class="mr-2">
+                    <label for="p{{ pregunta.id }}_b">B) {{ pregunta.respuesta_b }}</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="radio" id="p{{ pregunta.id }}_c" name="pregunta_{{ pregunta.id }}" value="C" class="mr-2">
+                    <label for="p{{ pregunta.id }}_c">C) {{ pregunta.respuesta_c }}</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="radio" id="p{{ pregunta.id }}_d" name="pregunta_{{ pregunta.id }}" value="D" class="mr-2">
+                    <label for="p{{ pregunta.id }}_d">D) {{ pregunta.respuesta_d }}</label>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="flex justify-between mt-6">
+            <button type="submit" class="px-5 py-2.5 bg-green-600 text-white rounded-full hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300">
+                Enviar Examen
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

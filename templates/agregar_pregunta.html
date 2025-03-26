@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block container %}
+<div class="max-w-2xl mx-auto mt-10 p-5 bg-white shadow-md rounded-lg">
+    <h2 class="relative z-0 w-full mb-5 group">Agregar Nueva Pregunta</h2>
+    
+    <form method="POST">
+        {{ form.csrf_token }}
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        
+        <div class="mb-4">
+            {{ form.texto.label(class="block text-sm font-medium text-gray-700") }}
+            {{ form.texto(class="w-full p-2 border rounded") }}
+        </div>
+
+        <div class="mb-4">
+            {{ form.respuesta_a.label(class="block text-sm font-medium text-gray-700") }}
+            {{ form.respuesta_a(class="w-full p-2 border rounded") }}
+        </div>
+
+        <div class="mb-4">
+            {{ form.respuesta_b.label(class="block text-sm font-medium text-gray-700") }}
+            {{ form.respuesta_b(class="w-full p-2 border rounded") }}
+        </div>
+
+        <div class="mb-4">
+            {{ form.respuesta_c.label(class="block text-sm font-medium text-gray-700") }}
+            {{ form.respuesta_c(class="w-full p-2 border rounded") }}
+        </div>
+
+        <div class="mb-4">
+            {{ form.respuesta_d.label(class="block text-sm font-medium text-gray-700") }}
+            {{ form.respuesta_d(class="w-full p-2 border rounded") }}
+        </div>
+
+        <div class="mb-4">
+            {{ form.respuesta_correcta.label(class="block text-sm font-medium text-gray-700") }}
+            {{ form.respuesta_correcta(class="w-full p-2 border rounded") }}
+        </div>
+
+    
+        <div class="flex justify-between mt-5">
+            <button type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                {{ form.submit.label.text }}
+            </button>
+            <a href="{{ url_for('auth.index') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Regresar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
